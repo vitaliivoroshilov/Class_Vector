@@ -3,21 +3,24 @@ using namespace std;
 
 #include "Vector.h"
 
-Vector::Vector (int _N)
+Vector::Vector(int _N)
 {
 	N = _N;
 	arr = new int[N];
 }
+
 Vector::Vector(const Vector& vec)
 {
 	N = vec.N;
 	arr = new int[N];
 }
-int& Vector::operator[] (size_t i)
+
+int& Vector::operator[](size_t i)
 {
 	return arr[i];
 }
-int Vector::operator* (const Vector& other)
+
+Vector Vector::operator*(const Vector& other)
 {
 	if (N != other.N)
 		throw std::invalid_argument("");
@@ -26,8 +29,10 @@ int Vector::operator* (const Vector& other)
 	{
 		res[n] = arr[n] * other.arr[n];
 	}
+	return res;
 }
-int Vector::operator+ (const Vector& other)
+
+Vector Vector::operator+(const Vector& other)
 {
 	if (N != other.N)
 		throw std::invalid_argument("");
@@ -36,8 +41,10 @@ int Vector::operator+ (const Vector& other)
 	{
 		res[n] = arr[n] + other.arr[n];
 	}
+	return res;
 }
-int Vector::operator- (const Vector& other)
+
+Vector Vector::operator-(const Vector& other)
 {
 	if (N != other.N)
 		throw std::invalid_argument("");
@@ -46,7 +53,9 @@ int Vector::operator- (const Vector& other)
 	{
 		res[n] = arr[n] - other.arr[n];
 	}
+	return res;
 }
+
 Vector Vector::v_mult(Vector& a)
 {
 	if (this->N != 3 || a.N != 3)
@@ -58,15 +67,20 @@ Vector Vector::v_mult(Vector& a)
 
 	return result;
 }
-void Vector::initVector(Vector vec)
+
+void Vector::initVector()
 {
-	for (int i = 0; i < vec.N; i++)
+	cout << "Ener " << N << " vector's elements: ";
+	for (int i = 0; i < N; i++)
 	{
-		cin >> vec.arr[i];
+		cin >> arr[i];
 	}
 }
-void Vector::testVector(Vector testVector)
+
+void Vector::printVector()
 {
-	for (int i = 0; i < testVector.N; i++)
-		cout << testVector.arr[i];
+	cout << "Your vector: ";
+	for (int i = 0; i < N; i++)
+		cout << arr[i] << " ";
+	cout << endl;
 }

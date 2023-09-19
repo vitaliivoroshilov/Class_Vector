@@ -5,10 +5,20 @@ using namespace std;
 
 int main()
 {
-	Vector vector(3);
+	Vector vector1(3);
+	vector1.initVector();
 
-	Vector::initVector(vector);
-	Vector::testVector(vector);
+	Vector vector2(3);
+	vector2.initVector();
+
+	Vector vector = vector1 + vector2;
+	vector.printVector();
+
+	vector = vector1 - vector2;
+	vector.printVector();
+
+	vector = vector1 * vector2;
+	vector.printVector();
 
 	return 0;
 }
